@@ -30,6 +30,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
@@ -172,10 +173,14 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         edittext.setLayoutParams(edittext_layout_params);
 
         // ...add to FrameLayout
-        mFrameLayout.addView(edittext);
+        //mFrameLayout.addView(edittext);
 
         // Cocos2dxGLSurfaceView
         this.mGLSurfaceView = this.onCreateView();
+        
+    	this.mGLSurfaceView.setZOrderOnTop(true);
+    	this.mGLSurfaceView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+    	this.mGLSurfaceView.setEGLConfigChooser(8,8,8,8,16,0);
 
         // ...add to FrameLayout
         mFrameLayout.addView(this.mGLSurfaceView);
@@ -185,7 +190,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
            this.mGLSurfaceView.setEGLConfigChooser(8 , 8, 8, 8, 16, 0);
 
         this.mGLSurfaceView.setCocos2dxRenderer(new Cocos2dxRenderer());
-        this.mGLSurfaceView.setCocos2dxEditText(edittext);
+        //this.mGLSurfaceView.setCocos2dxEditText(edittext);
 
         // Set framelayout as the content view
 		setContentView(mFrameLayout);

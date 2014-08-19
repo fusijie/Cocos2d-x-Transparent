@@ -72,6 +72,12 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 	public void onSurfaceCreated(final GL10 pGL10, final EGLConfig pEGLConfig) {
 		Cocos2dxRenderer.nativeInit(this.mScreenWidth, this.mScreenHeight);
 		this.mLastTickInNanoSeconds = System.nanoTime();
+		
+		pGL10.glDisable(GL10.GL_DITHER);
+		pGL10.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_FASTEST);
+		pGL10.glClearColor(0, 0, 0, 0);
+		pGL10.glEnable(GL10.GL_CULL_FACE);
+		pGL10.glShadeModel(GL10.GL_SMOOTH);
 	}
 
 	@Override
